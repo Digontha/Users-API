@@ -17,7 +17,7 @@ const singleData =(data)=>{
            const cardContainer = document.getElementById("card-container")
 
          data.forEach(users => {
-            console.log(users)
+            // console.log(users)
             
             const div = document.createElement("div")
             div.classList = `card card-compact border`;
@@ -32,18 +32,34 @@ const singleData =(data)=>{
               <p>Phone:  ${users.phone}</p>
               <p>Email:  ${users.email}</p>
               <p>BG   :  ${users.bloodGroup}</p>
-            </div>
-            <div class="text-center mt-3">  <button class="btn btn-primary ">Details</button></div>
-
+                  
              
-            
-            </div>
-
+              <button class="btn btn-primary ml-24 mt-2" onclick="my_modal_${users.id}.showModal()">Details</button>
+              <dialog id="my_modal_${users.id}" class="modal">
+              
+                <form method="dialog" class="modal-box">
+                <img class="ml-20" src="${users.image}">
+                  <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                  <h3 class="font-bold text-lg">Name :${users.lastName}</h3>
+                  <p class="py-4">Age: ${users.age}</p>
+                  <p class="py-4">Gender: ${users.gender}</p>
+                  <p class="py-4">BirthDate: ${users.birthDate}</p>
+                  <p class="py-4">City: ${users.address.city}</p>
+                  <p class="py-4">Password: ${users.password}</p>
+                  <p class="py-4">IP :${users.ip}</p>
+                </form>
+              </dialog>
             `
           cardContainer.appendChild(div)
 
          });
 
 }
+
+const DetailsModalOpen = (Maindata)=>{
+
+    my_modal_3.showModal()
+}
+
 
 loadData()
